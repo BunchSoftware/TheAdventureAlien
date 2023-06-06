@@ -6066,7 +6066,7 @@ MonoBehaviour:
         \u043E\u043F\u0430\u0441\u043D\u044B\u0435 \u043C\u0435\u0441\u0442\u0430
         \u0432 \u043E\u0434\u0438\u043D\u043E\u0447\u043A\u0443."
       waitSecond: 2
-      isFade: 1
+      isFade: 0
     - partnerDialog: {fileID: 54333520}
       enterDrop: 2
       exitDrop: 1
@@ -6079,32 +6079,32 @@ MonoBehaviour:
       Sentences: "\u041E\u0447\u0438\u0441\u0442\u0438\u043B \u044D\u0442\u043E\u0442
         \u043C\u0438\u0440 \u043E\u0442 \u043C\u043E\u043D\u0441\u0442\u0440\u043E\u0432."
       waitSecond: 2
-      isFade: 1
+      isFade: 0
     - partnerDialog: {fileID: 54333520}
       enterDrop: 2
       exitDrop: 1
       Sentences: "\u0429\u0430\u0441 \u0431\u0443\u0434\u0435\u043C \u0435\u0441\u0442\u044C
         \u0442\u043E\u0440\u0442 !"
       waitSecond: 2
-      isFade: 1
+      isFade: 0
     - partnerDialog: {fileID: 100239250}
       enterDrop: 2
       exitDrop: 1
       Sentences: "\u0410\u043C \u043D\u044F\u043C... \u0410\u043C \u043D\u044F\u043C.."
       waitSecond: 2
-      isFade: 1
+      isFade: 0
     - partnerDialog: {fileID: 54333520}
       enterDrop: 2
       exitDrop: 1
       Sentences: "\u0410\u043C \u043D\u044F\u043C... \u0410\u043C \u043D\u044F\u043C.."
       waitSecond: 2
-      isFade: 1
+      isFade: 0
     - partnerDialog: {fileID: 717838761}
       enterDrop: 2
       exitDrop: 1
       Sentences: "\u0410\u043C \u043D\u044F\u043C... \u0410\u043C \u043D\u044F\u043C.."
       waitSecond: 2
-      isFade: 1
+      isFade: 0
     - partnerDialog: {fileID: 100239250}
       enterDrop: 2
       exitDrop: 1
