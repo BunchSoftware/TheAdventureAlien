@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6245930408709110893}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CastlePlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6245930408926440438}
   - component: {fileID: 6245930408926440433}
   - component: {fileID: 6245930408926440432}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CastlePlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

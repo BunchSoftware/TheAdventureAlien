@@ -70,14 +70,17 @@ public class UIController : MonoBehaviour
 
     public void Lose()
     {
+        Time.timeScale = 0f;
         losePanel.SetActive(true);
-        Time.timeScale = 0;
+        playerController.enabled = false;
+        playerController.ZeroPhysic();
     }
     public void Win()
     {
-        musicManager.Stop();
+        Time.timeScale = 0f;
         winPanel.SetActive(true);
-        Time.timeScale = 0;
+        playerController.enabled = false;
+        playerController.ZeroPhysic();
     }
 
     public void SetActiveUI(GameObject gameObject)

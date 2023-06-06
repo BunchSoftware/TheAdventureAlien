@@ -14,6 +14,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private UIController uIController;
     [SerializeField] private int currentIndexScene;
     private DialogueScript dialogueScript;
+    private bool skipDialog = false;
 
     private void Start()
     {
@@ -35,7 +36,11 @@ public class DialogManager : MonoBehaviour
         uIController.playerController.enabled = true;
     }
 
-    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            skipDialog = true;
+    }
 
     public void TypeLine(DialogPoint dialogPoint)
     {
@@ -53,14 +58,29 @@ public class DialogManager : MonoBehaviour
             dialogueWindow.textDialog.text = null;
             for (int j = 0; j < dialogPoint.dialog[i].Sentences.ToCharArray().Length; j++)
             {
-                dialogueWindow.textDialog.text += dialogPoint.dialog[i].Sentences[j];
-                yield return new WaitForSeconds(speedText);
+                if (skipDialog)
+                    j = dialogPoint.dialog[i].Sentences.ToCharArray().Length;
+                else
+                {
+                    dialogueWindow.textDialog.text += dialogPoint.dialog[i].Sentences[j];
+                    yield return new WaitForSeconds(speedText);
+                }
             }
-            yield return new WaitForSeconds(dialogPoint.dialog[i].waitSecond);
-            ExitDrop(dialogPoint.dialog[i]);
+
+            if (skipDialog)
+            {
+                ExitDrop(dialogPoint.dialog[i]);
+                skipDialog = false;
+            }
+            else
+            {
+                yield return new WaitForSeconds(dialogPoint.dialog[i].waitSecond);
+                ExitDrop(dialogPoint.dialog[i]);
+            }
 
             if (dialogPoint.dialog[i].isFade)
             {
+                EndDialog();
                 uIController.fade.currentIndexScene = currentIndexScene;
                 uIController.fade.FadeBlack();
             }

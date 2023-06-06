@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
@@ -9,12 +10,12 @@ public class PlayerController: MonoBehaviour
 
     [SerializeField] private float jumpForce;
     private bool isGrounded = true;
-    private bool isJump = false;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask whatLayerMask;
 
     [SerializeField] private float deadlyFlyTime = 3f;
     private float  flyTime = 0.0f;
-    private float checkRadius = 0.1f;
+    private float checkRadius = 0.3f;
 
     private int coins = 0;
     private int score = 0;
@@ -70,11 +71,11 @@ public class PlayerController: MonoBehaviour
     {
         CheckGround();
         rigidbody2D.velocity = new Vector2(speed * Input.GetAxis("Horizontal"), rigidbody2D.velocity.y );
-        if ((Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0) && isJump == false)
+        if ((Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0) && isGrounded)
         {
             animator.SetInteger("Behavior", 1);
         }
-        else if(isJump == false)
+        else if(isGrounded)
         {
             animator.SetInteger("Behavior", 0);
         }
@@ -99,18 +100,6 @@ public class PlayerController: MonoBehaviour
             rigidbody2D.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
     }
-    private void CheckGround()
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, checkRadius);
-        isGrounded = colliders.Length > 1;
-        if (isGrounded == false)
-        {
-            isJump = true;
-            animator.SetInteger("Behavior", 2);
-        }
-        else
-            isJump = false; 
-    }
     public void RecountScore(int score)
     {
         this.score += score;
@@ -122,7 +111,8 @@ public class PlayerController: MonoBehaviour
         OnRecountedCoins?.Invoke(this.coins);
     }
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+    {      
+
         if (collision.gameObject.tag == "Coin")
         {
             musicManager.OnPlayOneShotAndEndLast(1);
@@ -138,6 +128,14 @@ public class PlayerController: MonoBehaviour
         if (collision.gameObject.tag == "Lava")
         {
             healthModule.RecountHealth(-100);
+        }
+    }
+    private void CheckGround()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatLayerMask);
+        if (isGrounded == false)
+        {
+            animator.SetInteger("Behavior", 2);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

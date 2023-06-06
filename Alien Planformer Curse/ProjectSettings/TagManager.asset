@@ -11,11 +11,12 @@ TagManager:
   - Coin
   - Spike
   - Star
+  - Pause
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - LeftCanvas

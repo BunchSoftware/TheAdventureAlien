@@ -83,7 +83,6 @@
     <Compile Include="Assets\Scripts\Abstract\Follower.cs" />
     <Compile Include="Assets\Scripts\Dialog\DialogZone.cs" />
     <Compile Include="Assets\Scripts\Dialog\DialogPoint.cs" />
-    <Compile Include="Assets\Scripts\NPC.cs" />
     <Compile Include="Assets\Scripts\Example\ExampleEnumerator.cs" />
     <Compile Include="Assets\Scripts\DontDestroy.cs" />
   </ItemGroup>

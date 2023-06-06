@@ -38,11 +38,17 @@ public class HealthModule : MonoBehaviour
     /// <param name="health"> оличество отнимаемого или получаемого здоровь€</param>
     public void RecountHealth(float health)
     {
-        if ((this.health + health) < MaxHealth && (this.health + health) >= MinHealth)
+        if ((this.health + health) <= MaxHealth && (this.health + health) > 0)
         {
             this.health += health;
             OnHealthChanged?.Invoke(this.health);
         }
+        else
+        {
+            this.health = 0;
+            OnHealthChanged?.Invoke(0);
+        }
+
         if (this.health <= MinHealth)
             OnDied?.Invoke();
         if (this.health == MaxHealth)

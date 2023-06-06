@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float DamageOnTouch;
     [SerializeField] private float DamageMe;
     [SerializeField] private int ScoreOnMurder;
-    [SerializeField] private HealthModule healthModule;
+    public HealthModule healthModule;
     [SerializeField] private float deathTime = 2f;
     private bool isHit = false;
     [SerializeField] private GameObject drop;
@@ -45,7 +45,6 @@ public class Enemy : MonoBehaviour
             collision.gameObject.GetComponent<HealthModule>().RecountHealth(-DamageOnTouch);
             healthModule.RecountHealth(-DamageMe);
         }
-
     }
     private IEnumerator DeathIE()
     {
